@@ -1,9 +1,13 @@
 site_name: TeSLA CE Client
+site_url: https://tesla-ce.github.io/python-client/
+site_author: Xavier Baro
+
 nav:
     - Home: index.md
 
 theme:
   name: "material"
+  custom_dir: overrides
 
 markdown_extensions:
   - admonition

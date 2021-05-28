@@ -6,13 +6,8 @@ deprecation
 # Error tracking
 sentry-sdk
 
-# Test requirements
-pytest
-pytest-cov
-pytest-dependency
-
 # Documentation requirements
-mkdocs
-mkdocstrings
-mkdocs-material
-mike
+# mkdocs
+# mkdocstrings
+# mkdocs-material
+# mike
