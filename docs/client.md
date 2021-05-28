@@ -1,4 +1,4 @@
 # Client
 
-::: tesla_client
+::: tesla_ce_client
 

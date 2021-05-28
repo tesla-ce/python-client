@@ -1,4 +1,4 @@
-name: Python Package
+name: Build Documentation
 on:
   push:
     branches: [ main ]

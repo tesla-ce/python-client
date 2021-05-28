@@ -4,6 +4,7 @@ site_author: Xavier Baro
 
 nav:
     - Home: index.md
+    - Client: client.md
 
 theme:
   name: "material"
