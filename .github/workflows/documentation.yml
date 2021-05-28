@@ -49,12 +49,17 @@ jobs:
           python -m pip install --upgrade pip mkdocs mkdocstrings mkdocs-material mike
           if [ -f requirements.in ]; then pip-compile; fi
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Setup doc deploy
+        run: |
+          git config --global user.name Xavier Baro
+          git config --global user.email xbaro@uoc.edu
       - name: Update current documentation
         if: github.event_name != 'release'
         run: |
-          mike deploy ${{ steps.vars.outputs.version }}
+          mike deploy --push ${{ steps.vars.outputs.version }}
       - name: Update latest documentation
         if: github.event_name == 'release'
         run: |
-          mike deploy ${{ steps.vars.outputs.version }} latest
+          mike deploy --push --update-aliases ${{ steps.vars.outputs.version }} latest
+          mike set-default --push latest
 
