@@ -22,9 +22,9 @@ setuptools.setup(
     description="TeSLA CE Client for Python",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/tesla-ce/python-client",
+    url="https://tesla-ce.github.io",
     project_urls={
-        'Documentation': 'https://tesla-ce.github.io',
+        'Documentation': 'https://tesla-ce.github.io/python-client/',
         'Source': 'https://github.com/tesla-ce/python-client',
     },
     packages=setuptools.find_packages('src', exclude='__pycache__'),
