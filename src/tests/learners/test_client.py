@@ -14,6 +14,7 @@
 #      along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """ Test module for TeSLA CE client creation """
 import os
+import pytest
 import mock
 from requests import exceptions
 from tesla_ce_client import Client

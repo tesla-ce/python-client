@@ -83,7 +83,8 @@ jobs:
         if: matrix.python-version == 3.9        
         run: |
           # Generate XML report
-          coverage xml         
+          coverage xml
+          cat coverage.xml
           # Replace the file paths to fit with source paths instead of installed package paths
           sed -i 's+${{ env.LD_LIBRARY_PATH }}/python${{ matrix.python-version }}/site-packages/tesla_ce-${{ steps.vars.outputs.version }}-py${{ matrix.python-version }}.egg+src+g' coverage.xml
           # Perform PyLint Analysis
