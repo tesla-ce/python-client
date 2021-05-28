@@ -112,9 +112,9 @@ jobs:
           # Build requirements
           python -m pip install --upgrade pip
           python -m pip install pip-tools twine
-          pip-compile
+          if [ -f requirements.in ]; then pip-compile; fi
           # Set the version
-          echo '${{ steps.vars.outputs.tag }}' > src/tesla_ce_client/lib/data/VERSION
+          echo '${{ steps.vars.outputs.tag }}' > src/tesla_ce_client/data/VERSION
           # Build wheel
           python setup.py sdist bdist_wheel
           # Publish the package
