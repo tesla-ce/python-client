@@ -48,7 +48,7 @@ jobs:
       - name: Get version value
         id: vars
         run: |          
-          echo ::set-output name=version::$(cat src/tesla_ce/lib/data/VERSION)          
+          echo ::set-output name=version::$(cat src/tesla_ce_client/data/VERSION)
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -84,12 +84,11 @@ jobs:
         run: |
           # Generate XML report
           coverage xml
-          cat coverage.xml
           # Replace the file paths to fit with source paths instead of installed package paths
-          sed -i 's+${{ env.LD_LIBRARY_PATH }}/python${{ matrix.python-version }}/site-packages/tesla_ce-${{ steps.vars.outputs.version }}-py${{ matrix.python-version }}.egg+src+g' coverage.xml
+          sed -i 's+${{ env.LD_LIBRARY_PATH }}/python${{ matrix.python-version }}/site-packages/tesla_ce_client-${{ steps.vars.outputs.version }}-py${{ matrix.python-version }}.egg+src+g' coverage.xml
           # Perform PyLint Analysis
           python -m pip install pyflakes pylint
-          pylint --exit-zero --max-line-length=120 src/tesla_ce tests/ -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" | tee pylint.txt
+          pylint --exit-zero --max-line-length=120 src/tesla_ce_client tests/ -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" | tee pylint.txt
           # Set the current version to SonarQube configuration file
           echo 'sonar.projectVersion=${{ steps.vars.outputs.version }}' >> sonar-project.properties          
       - name: SonarQube analysis
