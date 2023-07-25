@@ -15,3 +15,5 @@
 """ TeSLA CE CLient package """
 from .client import Client
 from . import exception
+
+__all__ = ['Client', 'exception']
