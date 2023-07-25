@@ -60,7 +60,7 @@ class Enrolment:
         try:
             return self._connector.post('/api/v2/provider/{}/enrolment/'.format(provider_id),
                                         body={
-                                            'learner_id': learner_id,
+                                            'learner_id': str(learner_id),
                                             'task_id': task_id
                                         })
         except exception.BadRequestException as exc:
@@ -78,7 +78,7 @@ class Enrolment:
             :return: Learner model
             :rtype: dict
         """
-        return self._connector.get('/api/v2/provider/{}/enrolment/{}/'.format(provider_id, learner_id))
+        return self._connector.get('/api/v2/provider/{}/enrolment/{}/'.format(provider_id, str(learner_id)))
 
     def unlock_model(self, provider_id, learner_id, task_id):
         """
@@ -91,7 +91,7 @@ class Enrolment:
             :param task_id: Task UUID value. It will allow to update the model.
             :type task_id: str
         """
-        self._connector.post('/api/v2/provider/{}/enrolment/{}/unlock/'.format(provider_id, learner_id),
+        self._connector.post('/api/v2/provider/{}/enrolment/{}/unlock/'.format(provider_id, str(learner_id)),
                              body={
                                  'token': task_id
                              })
@@ -121,7 +121,7 @@ class Enrolment:
             # Check given response
             self._connector._check_response_status(resp.status_code, resp.content)
 
-            return self._connector.put('/api/v2/provider/{}/enrolment/{}/'.format(provider_id, learner_id),
+            return self._connector.put('/api/v2/provider/{}/enrolment/{}/'.format(provider_id, str(learner_id)),
                                         body={
                                             'learner_id': learner_id,
                                             'task_id': task_id,
@@ -147,7 +147,7 @@ class Enrolment:
             :rtype: dict
         """
         return self._connector.get('/api/v2/provider/{}/enrolment/{}/sample/{}/'.format(provider_id,
-                                                                                        learner_id,
+                                                                                        str(learner_id),
                                                                                         sample_id))
 
     def get_sample_validation(self, provider_id, learner_id, sample_id, validation_id):
@@ -166,7 +166,7 @@ class Enrolment:
             :type result: dict
         """
         return self._connector.get('/api/v2/provider/{}/enrolment/{}/sample/{}/validation/{}/'.format(
-            provider_id, learner_id, sample_id, validation_id))
+            provider_id, str(learner_id), sample_id, validation_id))
 
     def set_sample_validation(self, provider_id, learner_id, sample_id, validation_id, result):
         """
@@ -184,7 +184,7 @@ class Enrolment:
             :type result: dict
         """
         return self._connector.put('/api/v2/provider/{}/enrolment/{}/sample/{}/validation/{}/'.format(
-            provider_id, learner_id, sample_id, validation_id), body=result)
+            provider_id, str(learner_id), sample_id, validation_id), body=result)
 
     def get_sample_validation_list(self, provider_id, learner_id, sample_id):
         """
@@ -200,7 +200,7 @@ class Enrolment:
             :type result: dict
         """
         return self._connector.get('/api/v2/provider/{}/enrolment/{}/sample/{}/validation/'.format(
-            provider_id, learner_id, sample_id))
+            provider_id, str(learner_id), sample_id))
 
     def get_model_samples(self, provider_id, learner_id):
         """
@@ -214,7 +214,7 @@ class Enrolment:
             :type result: dict
         """
         return self._connector.get('/api/v2/provider/{}/enrolment/{}/used_samples/'.format(
-            provider_id, learner_id))
+            provider_id, str(learner_id)))
 
     def get_available_samples(self, provider_id, learner_id):
         """
@@ -228,7 +228,7 @@ class Enrolment:
             :type result: dict
         """
         return self._connector.get('/api/v2/provider/{}/enrolment/{}/available_samples/'.format(
-            provider_id, learner_id))
+            provider_id, str(learner_id)))
 
     def set_sample_validation_status(self, provider_id, learner_id, sample_id, validation_id, status):
         """
@@ -249,7 +249,7 @@ class Enrolment:
             :return:
         """
         return self._connector.post('/api/v2/provider/{}/enrolment/{}/sample/{}/validation/{}/status/'.format(
-            provider_id, learner_id, sample_id, validation_id), body={"status": status.value})
+            provider_id, str(learner_id), sample_id, validation_id), body={"status": status.value})
 
     def set_sample_status(self, provider_id, learner_id, sample_id, status):
         """

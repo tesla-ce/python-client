@@ -93,12 +93,12 @@ class VleCourseActivityResultsClient():
             return self._connector.get('api/v2/vle/{}/course/{}/activity/{}/learner/{}/request/'.format(vle_id,
                                                                                                         course_id,
                                                                                                         activity_id,
-                                                                                                        learner_id)
+                                                                                                        str(learner_id))
                                        )
         return self._connector.get('api/v2/vle/{}/course/{}/activity/{}/learner/{}/request/?instruments={}'.format(
             vle_id,
             course_id,
             activity_id,
-            learner_id,
+            str(learner_id),
             instrument)
         )

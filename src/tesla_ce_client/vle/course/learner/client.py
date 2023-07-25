@@ -59,7 +59,7 @@ class VleCourseLearnerClient():
         """
         if vle_id is None:
             vle_id = self._connector.get_vle_id()
-        return self._connector.get('api/v2/vle/{}/course/{}/activity/{}/'.format(vle_id, course_id, learner_id))
+        return self._connector.get('api/v2/vle/{}/course/{}/activity/{}/'.format(vle_id, course_id, str(learner_id)))
 
     def find_by_uid(self, course_id, uid, vle_id=None):
         """
@@ -125,7 +125,7 @@ class VleCourseLearnerClient():
         if vle_id is None:
             vle_id = self._connector.get_vle_id()
         result = self._connector.get('api/v2/vle/{}/course/{}/learner/?lerner_id={}'.format(
-            vle_id, course_id, learner_id)
+            vle_id, course_id, str(learner_id))
         )
 
         if result['count'] == 1:
