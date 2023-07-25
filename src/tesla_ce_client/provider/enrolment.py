@@ -123,7 +123,7 @@ class Enrolment:
 
             return self._connector.put('/api/v2/provider/{}/enrolment/{}/'.format(provider_id, str(learner_id)),
                                         body={
-                                            'learner_id': learner_id,
+                                            'learner_id': str(learner_id),
                                             'task_id': task_id,
                                             'percentage': model['percentage'],
                                             'can_analyse': model['can_analyse'],
